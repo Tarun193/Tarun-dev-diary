@@ -1,0 +1,21 @@
+---
+const info = {
+  firstName: "Tarun",
+  lastName: "Chawla",
+  Description:
+    "Welcome to Developer Diaries by Tarun Chawla, a space dedicated to exploring the dynamic world of programming. I have skills in Python, Java, and React.js, Data Structures, Algorithms among others. This blog shares my journey and deep understanding of technology.",
+};
+---
+
+<section class="my-8 p-4 md:p-8 m">
+  <h2 class="text-3xl">
+    Hello I am,
+    <div class="inline whitespace-nowrap">
+      <span>{info.firstName}</span>
+      <span class="text-teal-200">{info.lastName}</span>
+    </div>
+  </h2>
+  <p class="text-md sm:text-lg mt-12">{info.Description}</p>
+</section>
+
+<hr class="h-[2px] bg-black/60 m-auto" />

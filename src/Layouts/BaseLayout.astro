@@ -1,0 +1,35 @@
+---
+// Important Imports
+import Header from "../Components/Header.astro";
+import programmer from "../assests/images/programmer.svg";
+import Footer from "../Components/Footer.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={programmer} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Tarun Chawla" />
+    <meta
+      name="description"
+      content="This is blog site where I am as a developer going to share my knowledge"
+    />
+    <title>Tarun's Dev Diary</title>
+    <!-- Adding Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="font-IBM-Mono min-h-screen bg-gradient-to-b from-gray-900 to-black/90 text-white max-w-5xl mx-auto flex flex-col"
+  >
+    <Header />
+    <slot />
+  </body>
+  <Footer />
+</html>

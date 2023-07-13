@@ -1,0 +1,18 @@
+---
+const posts = [];
+---
+
+<section class="mt-8">
+  <h2 class="text-2xl font-bold">Recent Posts</h2>
+  <div>
+    {
+      !posts.length ? (
+        <p class="text-lg text-center font-semibold mt-6">
+          Sorry for Now there are no Post
+        </p>
+      ) : (
+        posts
+      )
+    }
+  </div>
+</section>

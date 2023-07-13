@@ -1,0 +1,40 @@
+---
+// Importing Image
+import programmer from "../assests/images/programmer.svg";
+---
+
+<!-- Designing Header section of the blog -->
+<header class="p-4 flex justify-between items-center">
+  <div class="flex items-center">
+    <img src={programmer} alt="progarmmer svg" class="w-[60px]" />
+    <h1 class="text-lg sm:text-xl">
+      <span class="block">Tarun's</span><span class="block text-teal-200"
+        >Dev Diary</span
+      >
+    </h1>
+  </div>
+  <nav class="hidden sm:block">
+    <ul class="flex gap-6 text-lg font-semibold">
+      <li
+        class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200"
+      >
+        <a href="/">Home</a>
+      </li>
+      <li
+        class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200"
+      >
+        <a href="/posts/">Posts</a>
+      </li>
+      <li
+        class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200"
+      >
+        <a href="/posts/">Tags</a>
+      </li>
+      <li
+        class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200"
+      >
+        <a href="/about/">About</a>
+      </li>
+    </ul>
+  </nav>
+</header>
