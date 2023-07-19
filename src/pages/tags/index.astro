@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+// Getting all the unique tags;
+const posts = await getCollection("blog");
+
+const tags = Array.from(new Set(posts.map((post) => post.data.tags).flat()));
+---
+
+<BaseLayout>
+  <h1 class="text-3xl font-bold">Tags</h1>
+  <hr class="h-[2px] bg-black/60 m-auto my-4" />
+  <section>
+    {
+      !tags.length ? (
+        <p class="text-lg text-center font-semibold mt-6">
+          Sorry for Now there are no Post tags.
+        </p>
+      ) : (
+        <section class="my-4 space-x-4 text-xl">
+          {tags.map((tag) => (
+            <a class="hover:cursor-pointer hover:text-teal-200 underline underline-offset-8 decoration-dashed decoration-teal-200">
+              #{tag}
+            </a>
+          ))}
+        </section>
+      )
+    }
+  </section>
+</BaseLayout>

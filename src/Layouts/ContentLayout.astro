@@ -4,8 +4,6 @@ import BaseLayout from "./BaseLayout.astro";
 import "../styles/global.css";
 ---
 
-<BaseLayout>
-  <main class="prose p-4 mt-4 flex-1">
-    <slot />
-  </main>
+<BaseLayout className="prose">
+  <slot />
 </BaseLayout>

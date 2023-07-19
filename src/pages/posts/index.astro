@@ -1,0 +1,28 @@
+---
+import Post from "../../Components/post.astro";
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+
+// Importing getCollection api to get all the posts from blog folder
+import { getCollection } from "astro:content";
+const posts = await getCollection("blog");
+---
+
+<BaseLayout>
+  <h1 class="text-3xl font-bold">Posts</h1>
+  <hr class="h-[2px] bg-black/60 m-auto my-4" />
+  <section>
+    {
+      !posts.length ? (
+        <p class="text-lg text-center font-semibold mt-6">
+          Sorry for Now there are no Post
+        </p>
+      ) : (
+        <section class="my-4">
+          {posts.map((post) => (
+            <Post post={post} />
+          ))}
+        </section>
+      )
+    }
+  </section>
+</BaseLayout>

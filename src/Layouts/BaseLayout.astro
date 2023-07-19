@@ -3,6 +3,12 @@
 import Header from "../Components/Header.astro";
 import programmer from "../assests/images/programmer.svg";
 import Footer from "../Components/Footer.astro";
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
 <html lang="en">
@@ -30,7 +36,9 @@ import Footer from "../Components/Footer.astro";
     class="font-IBM-Mono min-h-screen bg-gradient-to-b from-gray-900 to-black/90 text-white max-w-5xl mx-auto flex flex-col"
   >
     <Header />
-    <slot />
+    <main class={`flex-1 my-2 px-4 ${className}`}>
+      <slot />
+    </main>
   </body>
   <Footer />
 </html>

@@ -18,7 +18,7 @@ const { posts } = Astro.props;
           Sorry for Now there are no Post
         </p>
       ) : (
-        <section class="my-4 px-2">
+        <section class="my-4">
           {posts.map((post) => (
             <Post post={post} />
           ))}
