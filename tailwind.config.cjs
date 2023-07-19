@@ -14,6 +14,7 @@ module.exports = {
             "max-width": "100%",
             color: "var(--md-text-color)",
             backgroundColor: "none",
+
             // ul: {
             //   display: "flex",
             //   "flex-flow": "column wrap",

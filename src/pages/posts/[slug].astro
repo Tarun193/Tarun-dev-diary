@@ -1,0 +1,38 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
+import ContentLayout from "../../Layouts/ContentLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: createSlug(post.data.title) },
+    props: { post },
+  }));
+}
+
+export interface prop {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+
+const { data, render } = post;
+
+const { Content } = await render();
+---
+
+<ContentLayout>
+  <section>
+    <h1 class="my-2 p-0">{data.title}</h1>
+    <div class="text-md space-x-2 italic">
+      <span>{data.publishDate}</span>
+      <span>{data.author}</span>
+    </div>
+    <div class="space-x-2 text-teal-200">
+      {data.tags.map((tag: string) => <span>#{tag}</span>)}
+    </div>
+  </section>
+  <Content />
+</ContentLayout>

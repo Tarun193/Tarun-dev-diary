@@ -1,5 +1,12 @@
 ---
-const posts = [];
+import { CollectionEntry } from "astro:content";
+import Post from "./post.astro";
+
+export interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
 ---
 
 <section class="mt-8 px-2">
@@ -11,7 +18,11 @@ const posts = [];
           Sorry for Now there are no Post
         </p>
       ) : (
-        posts
+        <section class="my-4 px-2">
+          {posts.map((post) => (
+            <Post post={post} />
+          ))}
+        </section>
       )
     }
   </div>
