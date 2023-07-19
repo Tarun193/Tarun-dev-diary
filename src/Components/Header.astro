@@ -35,6 +35,11 @@ import programmer from "../assests/images/programmer.svg";
       >
         <a href="/about/">About</a>
       </li>
+      <li
+        class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200 flex-1 grid place-content-center"
+      >
+        <a href="https://tarun-chawla.tech" target="_blank">Portfolio</a>
+      </li>
     </ul>
   </nav>
   <button id="menuButton" class="space-y-2 sm:hidden">
@@ -42,10 +47,8 @@ import programmer from "../assests/images/programmer.svg";
     <div class="w-[25px] h-[3px] bg-teal-200"></div>
     <div class="w-[25px] h-[3px] bg-teal-200"></div>
   </button>
-  <div
+  <nav
     id="mobileNav"
-    role="navigation"
-    aria-lable="secondary"
     class="min-h-screen bg-black/70 absolute top-0 left-0 w-full justify-center items-center hidden sm:hidden"
   >
     <button id="closeMenu" class="absolute top-6 right-4 space-y-2">
@@ -53,7 +56,7 @@ import programmer from "../assests/images/programmer.svg";
       <div class="w-[30px] h-[3px] bg-teal-200"></div>
     </button>
     <ul
-      class="flex flex-col gap-6 text-2xl font-semibold min-h-[80vh] justify-center items-center"
+      class="flex flex-col gap-6 text-2xl font-semibold h-[80vh] justify-center items-center"
     >
       <li
         class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200 flex-1 grid place-content-center"
@@ -75,39 +78,44 @@ import programmer from "../assests/images/programmer.svg";
       >
         <a href="/about/">About</a>
       </li>
+      <li
+        class="hover:underline underline-offset-[5px] hover:decoration-wavy decoration-teal-200 flex-1 grid place-content-center"
+      >
+        <a href="https://tarun-chawla.tech" target="_blank">Portfolio</a>
+      </li>
     </ul>
-  </div>
-</header>
+  </nav>
 
-<script>
-  const menuButton = document.getElementById("menuButton");
-  const mobileNav = document.getElementById("mobileNav");
-  const closeMenuButton = document.getElementById("closeMenu");
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mobileNav = document.getElementById("mobileNav");
+    const closeMenuButton = document.getElementById("closeMenu");
 
-  let open = false;
+    let open = false;
 
-  const openClose = () => {
-    mobileNav.classList.toggle("flex");
-    mobileNav.classList.toggle("hidden");
-    menuButton.classList.toggle("hidden");
-    if (!open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    const openClose = () => {
+      mobileNav.classList.toggle("flex");
+      mobileNav.classList.toggle("hidden");
+      menuButton.classList.toggle("hidden");
+      if (!open) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+      open = !open;
+    };
+
+    menuButton.onclick = openClose;
+    closeMenuButton.onclick = openClose;
+  </script>
+
+  <style>
+    #closeMenu div:first-child {
+      rotate: 45deg;
     }
-    open = !open;
-  };
-
-  menuButton.onclick = openClose;
-  closeMenuButton.onclick = openClose;
-</script>
-
-<style>
-  #closeMenu div:first-child {
-    rotate: 45deg;
-  }
-  #closeMenu div:last-child {
-    rotate: -45deg;
-    transform: translate(8px, -8px);
-  }
-</style>
+    #closeMenu div:last-child {
+      rotate: -45deg;
+      transform: translate(8px, -8px);
+    }
+  </style>
+</header>
