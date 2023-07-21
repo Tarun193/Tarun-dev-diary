@@ -20,7 +20,10 @@ const tags = Array.from(new Set(posts.map((post) => post.data.tags).flat()));
       ) : (
         <section class="my-4 space-x-4 text-xl">
           {tags.map((tag) => (
-            <a class="hover:cursor-pointer hover:text-teal-200 underline underline-offset-8 decoration-dashed decoration-teal-200">
+            <a
+              href={`/tags/${tag}/`}
+              class="hover:cursor-pointer hover:text-teal-200 underline underline-offset-8 decoration-dashed decoration-teal-200"
+            >
               #{tag}
             </a>
           ))}

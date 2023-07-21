@@ -1,0 +1,44 @@
+---
+import { getCollection, CollectionEntry } from "astro:content";
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+import Post from "../../Components/post.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags = Array.from(new Set(posts.map((post) => post.data.tags).flat()));
+  return tags.map((tag) => {
+    const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+export interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<BaseLayout>
+  <h1 class="text-3xl font-bold">Tag: {tag}</h1>
+  <hr class="h-[2px] bg-black/60 m-auto my-4" />
+  <section>
+    {
+      !posts.length ? (
+        <p class="text-lg text-center font-semibold mt-6">
+          Sorry for Now there are no Post with tag {tag};
+        </p>
+      ) : (
+        <section class="my-4">
+          {posts.map((post) => (
+            <Post post={post} />
+          ))}
+        </section>
+      )
+    }
+  </section>
+</BaseLayout>
