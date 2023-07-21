@@ -6,8 +6,8 @@ import RecentPosts from "../Components/RecentPosts.astro";
 
 // Importing getCollection API for getting all the blog posts from
 import { getCollection } from "astro:content";
-// Getting all the posts
-const posts = await getCollection("blog");
+// Getting all the posts, if the draft is true then don't show that post
+const posts = await getCollection("blog", (blog) => !blog.data.draft);
 
 const sortedPosts = posts
   .sort(

@@ -9,7 +9,8 @@ const blogCollection = defineCollection({
         image: z.string().optional(),
         author: z.enum(["Tarun Chawla"]),
         publishDate: z.string().transform((str) => new Date(str).toString().split(" ").slice(0,4).join(" ")),
-        description: z.string()
+        description: z.string(),
+        draft: z.boolean().default(false)
     })
 });
 

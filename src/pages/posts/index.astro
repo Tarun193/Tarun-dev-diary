@@ -4,7 +4,7 @@ import BaseLayout from "../../Layouts/BaseLayout.astro";
 
 // Importing getCollection api to get all the posts from blog folder
 import { getCollection } from "astro:content";
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", (blog) => !blog.data.draft);
 ---
 
 <BaseLayout>

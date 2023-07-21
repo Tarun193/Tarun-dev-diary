@@ -3,7 +3,7 @@ import BaseLayout from "../../Layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 // Getting all the unique tags;
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", (blog) => !blog.data.draft);
 
 const tags = Array.from(new Set(posts.map((post) => post.data.tags).flat()));
 ---
