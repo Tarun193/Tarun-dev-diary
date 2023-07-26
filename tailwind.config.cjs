@@ -10,16 +10,23 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            "code::before": {
+              content: '""', // This overrides the default content, which is the backtick.
+            },
+            "code::after": {
+              content: '""', // This overrides the default content, which is the backtick.
+            },
+            code: {
+              color: "var(--md-inline-code-color)",
+              fontSize: "1em",
+            },
+            "font-size": "1.15rem",
             "--tw-prose-headings": "var(--md-text-color)",
             "max-width": "100%",
             color: "var(--md-text-color)",
             backgroundColor: "none",
-
-            // ul: {
-            //   display: "flex",
-            //   "flex-flow": "column wrap",
-            //   height: "250px",
-            // },
+            "--tw-prose-bold": "var(--md-text-color)",
+            "--tw-prose-code": "var(--md-text-color)",
             li: {
               color: "var(--md-li-text-color)",
             },

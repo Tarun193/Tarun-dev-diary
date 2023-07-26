@@ -1,30 +1,211 @@
 ---
-title: "Decorators In Python"
+title: "First-Class Functions and Closure In Python"
 author: "Tarun Chawla"
 tags:
   - Python
   - Functions
-  - Decorators
+  - Closure
 
 publishDate: "7/19/2023"
 
-description: "In this blog we are going to learn about decorators an interseting concept in python. Decorators provide an additional functionality while writting code."
+description: "In this insightful article, we will demystify two powerful Python concepts: first-class functions and closures."
 ---
 
-## What is Lorem Ipsum?
+## What are First-Class Functions?
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+**first-class functions:** A programming language is said to have first-class functions if it treats functions as first-class citizens. This means that functions are treated the same way as any other entity in the programming language. For example, functions can be passed to other functions, returned by other functions and assigned to a variable just like other objects(int, string etc.). This is an important concept that helps in understanding other concepts such as closures, higher order functions, decorators and many more. Many languages such as `Python`, `JavaScript`, `PHP`, `lua` support first-class functions.
 
-## Why do we use it?
+### Assigning function to a variable
 
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+_code:_
 
-## Where does it come from?
+```python
+def square(x):
+  return x * x
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+# Assigning a function a variable
+square_copy  = square
 
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+print(square_copy)
+print(square)
+```
 
-## Where can I get some?
+_Output:_
 
-There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+```python
+<function square at 0x7fc12daafe20>
+<function square at 0x7fc12daafe20>
+```
+
+Now, we can see that the variable `square_copy` has the same reference as the `square` function, which means `square_copy` is going to act the same way `square` function is working. As you can see:
+
+_Code:_
+
+```python
+print(square(3))
+print(square_copy(3))
+```
+
+_Output:_
+
+```python
+9
+9
+```
+
+**Note :** While assigning a function to a variable, do not use parentheses, this will execute that function instead of assigning its reference and store the return value in the variable instead of storing function reference. For example, `square_copy = square(2)` will execute the `square` function and return the square of argument.
+
+### Passing function as an argument
+
+Now, take an Example of Python's higher order `filter` function.
+
+_Code:_
+
+```python
+def is_even(num):
+  """
+    if num is divided by 2, the '%' will return 0 as remainder is 0.
+    not(0) = True (number is even).
+    not(any number except 0) = False (not even).
+  """
+  return not num % 2
+
+even_numbers = list(filter(is_even, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# Print all the even_numbers
+print(even_numbers)
+```
+
+_Output:_
+
+```python
+[2, 4, 6, 8, 10]
+```
+
+As we can see `filter` function takes `is_even` function as an argument. We can create our own `filter` function.
+
+_Code:_
+
+```python
+def is_even(num):
+  """
+    if num is divided by 2 the '%' will return 0 as remainder is 0.
+    not(0) = True (number is even).
+    not(any number except 0) is False (not even).
+  """
+  return not num % 2
+
+# this filter function is not exactly the same as Python's built-in filter function, but it works in a similar way.
+def my_filter(function, iterable):
+  result = []
+  for val in iteratable:
+    if function(val):
+      result.append(val)
+  return result
+
+
+even_numbers = my_filter(is_even, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+print(even_numbers)
+```
+
+_Output:_
+
+```python
+[2, 4, 6, 8, 10]
+```
+
+The `my_filter` function mimics the functionality of python's higher order `filter` function.
+
+### Returning a function from another function
+
+_code:_
+
+```python
+def create_greet():
+  def greet():
+    print("Hello, how are you?")
+  return greet
+
+
+# this function will return reference to the inner function greet.
+new_func = create_greet()
+
+print(new_func)
+new_func()
+```
+
+_Output:_
+
+```python
+<function create_greet.<locals>.greet at 0x000002C847468E00>
+Hello, how are you?
+```
+
+As you can see, the `create_greet` function returns the `greet` function that was defined within it. We then assign this returned function to the `new_func` variable. Hence, the `new_func` is now acting as `greet` function.
+
+**Note:** While returning function, do not use parentheses `()`, as it will call that function and will return what that function is returning. In this example `return greet()` will call `greet` function and will print `Hello, how are you?` , as `greet` function is returning nothing. So, `return greet()` will return `None`.
+
+_code:_
+
+```python
+def create_greet():
+  def greet():
+    print("Hello, how are you?")
+  return greet() # going to call greet()
+
+
+# this function will return reference to the inner_function.
+new_func = create_greet() # as greet return None, new_func = None
+
+print(new_func)
+new_func() # None is not a function, so going to give an error.
+```
+
+_output:_
+
+```python
+Hello, how are you?
+None
+Traceback (most recent call last):
+  File "e:\tarun\Chill\test.py", line 11, in <module>
+    new_func()
+TypeError: 'NoneType' object is not callable
+```
+
+## What is Closure?
+
+**Closure:** consider a closure as an imaginary container(enviornment) that stores the function along with the record of surrounding variables.This allows the function to "remember" the values of those variables, even if they no longer exist in memory.
+
+_code:_
+
+```python
+def create_multiplier(x):
+    num = x
+    def multiplier(n):
+        return num * n
+    return multiplier
+
+# create a "doubler" function
+doubler = create_multiplier(2)
+
+print(doubler(5))  # This will output 10
+
+# create a "tripler" function
+tripler = create_multiplier(3)
+
+print(tripler(5))  # This will output 15
+```
+
+```python
+10
+15
+```
+
+**Function's Working:** Whenever we call a function, a memory block is created in call stack for that function which stores all the variable associated with that function. Once the function is executed all the memory occupied by the function and it's variable is cleared.
+
+From the _function's working_, we can say that when we called `create_multiplier(2)` a memory block got created in call stack for `create_multiplier` function to store it variables and when the function returned `multiplier` the memory occupied by the function got cleared. This means that the variable `num` would also be removed from memory. However, when we call `doubler`, the function still knows the value of `num`. This is because the closure stores the value of `num` alongside the multiplier function.
+
+## Some Of The Applications
+
+- Can be used to create custom higher order functions.
+- fundamentals for understanding the concept of `decorators`.
+- Can be used for data encasulation.

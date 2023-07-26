@@ -4,7 +4,7 @@ import createSlug from "../../lib/createSlug";
 import ContentLayout from "../../Layouts/ContentLayout.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", (blog) => !blog.data.draft);
 
   return posts.map((post) => ({
     params: { slug: createSlug(post.data.title) },
@@ -33,6 +33,7 @@ const { Content } = await render();
     <div class="space-x-2 text-teal-200">
       {data.tags.map((tag: string) => <span>#{tag}</span>)}
     </div>
+    <p>{data.description}</p>
   </section>
   <Content />
 </ContentLayout>
