@@ -6,7 +6,7 @@ tags:
   - Functions
   - Closure
 
-publishDate: "7/19/2023"
+publishDate: "7/26/2023"
 
 description: "In this insightful article, we will demystify two powerful Python concepts: first-class functions and closures."
 ---
@@ -173,7 +173,7 @@ TypeError: 'NoneType' object is not callable
 
 ## What is Closure?
 
-**Closure:** consider a closure as an imaginary container(enviornment) that stores the function along with the record of surrounding variables.This allows the function to "remember" the values of those variables, even if they no longer exist in memory.
+**Closure:** consider a closure as an imaginary container (enviornment) that stores the function along with the record of surrounding variables.This allows the function to "remember" the values of those variables, even if they no longer exist in memory.
 
 _code:_
 
