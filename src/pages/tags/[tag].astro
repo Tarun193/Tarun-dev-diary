@@ -11,17 +11,20 @@ export async function getStaticPaths() {
     const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
     return {
       params: { tag: createSlug(tag) },
-      props: { posts: filteredPosts },
+      props: {
+        posts: filteredPosts,
+        tag,
+      },
     };
   });
 }
 
 export interface Props {
   posts: CollectionEntry<"blog">[];
+  tag: String;
 }
 
-const { posts } = Astro.props;
-const { tag } = Astro.params;
+const { posts, tag } = Astro.props;
 ---
 
 <BaseLayout>

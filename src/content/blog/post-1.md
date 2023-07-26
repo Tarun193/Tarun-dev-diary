@@ -5,6 +5,7 @@ tags:
   - Python
   - Functions
   - Closure
+  - First-Class Function
 
 publishDate: "7/26/2023"
 
