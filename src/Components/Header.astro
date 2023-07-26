@@ -7,13 +7,15 @@ import programmer from "../assests/images/programmer.svg";
 <header class="p-4 flex justify-between items-center relative mb-8">
   <div class="flex items-center">
     <img src={programmer} alt="progarmmer svg" class="w-[60px]" />
-    <h1 class="text-lg sm:text-xl">
-      <span class="block">Tarun's</span><span class="block text-teal-200"
-        >Dev Diary</span
-      >
+    <h1 class="text-lg sm:text-xl hover:cursor-pointer">
+      <a href="/">
+        <span class="block">Tarun's</span><span class="block text-teal-200"
+          >Dev Diary</span
+        >
+      </a>
     </h1>
   </div>
-  <nav class="hidden sm:block">
+  <nav class="hidden md:block">
     <ul class="flex gap-6 text-lg font-semibold">
       <li class="hover:text-teal-200">
         <a href="/">Home</a>
@@ -28,18 +30,21 @@ import programmer from "../assests/images/programmer.svg";
         <a href="/about/">About</a>
       </li>
       <li class="hover:text-teal-200">
+        <a href="/search/">Search</a>
+      </li>
+      <li class="hover:text-teal-200">
         <a href="https://tarun-chawla.tech" target="_blank">Portfolio</a>
       </li>
     </ul>
   </nav>
-  <button id="menuButton" class="space-y-2 sm:hidden">
+  <button id="menuButton" class="space-y-2 md:hidden">
     <div class="w-[25px] h-[3px] bg-teal-200"></div>
     <div class="w-[25px] h-[3px] bg-teal-200"></div>
     <div class="w-[25px] h-[3px] bg-teal-200"></div>
   </button>
   <nav
     id="mobileNav"
-    class="min-h-screen bg-black/70 absolute top-0 left-0 w-full justify-center hidden sm:hidden"
+    class="min-h-screen bg-black/70 absolute top-0 left-0 w-full justify-center hidden md:hidden"
   >
     <button id="closeMenu" class="absolute top-6 right-4 space-y-2">
       <div class="w-[30px] h-[3px] bg-teal-200"></div>
@@ -60,6 +65,9 @@ import programmer from "../assests/images/programmer.svg";
       </li>
       <li class="hover:text-teal-200 flex-1 grid place-content-center">
         <a href="https://tarun-chawla.tech" target="_blank">Portfolio</a>
+      </li>
+      <li class="hover:text-teal-200 flex-1 grid place-content-center">
+        <a href="/search/">Search</a>
       </li>
     </ul>
   </nav>

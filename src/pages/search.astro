@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../Layouts/BaseLayout.astro";
+import SearchComponent from "../Components/Search";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog", (blog) => !blog.data.draft);
+---
+
+<BaseLayout>
+  <h1 class="text-3xl font-bold">Search Posts</h1>
+  <hr class="h-[2px] bg-black/60 m-auto my-4" />
+  <SearchComponent client:load posts={posts} />
+</BaseLayout>
