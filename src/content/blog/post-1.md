@@ -17,7 +17,7 @@ description: "In this insightful article, we will demystify two powerful Python 
 
 ### Assigning function to a variable
 
-_code:_
+_Code:_
 
 ```python
 def square(x):
@@ -144,7 +144,7 @@ As you can see, the `create_greet` function returns the `greet` function that wa
 
 **Note:** While returning function, do not use parentheses `()`, as it will call that function and will return what that function is returning. In this example `return greet()` will call `greet` function and will print `Hello, how are you?` , as `greet` function is returning nothing. So, `return greet()` will return `None`.
 
-_code:_
+_Code:_
 
 ```python
 def create_greet():
@@ -160,7 +160,7 @@ print(new_func)
 new_func() # None is not a function, so going to give an error.
 ```
 
-_output:_
+_Output:_
 
 ```python
 Hello, how are you?
@@ -175,7 +175,7 @@ TypeError: 'NoneType' object is not callable
 
 **Closure:** consider a closure as an imaginary container (enviornment) that stores the function along with the record of surrounding variables.This allows the function to "remember" the values of those variables, even if they no longer exist in memory.
 
-_code:_
+_Code:_
 
 ```python
 def create_multiplier(x):
@@ -194,6 +194,8 @@ tripler = create_multiplier(3)
 
 print(tripler(5))  # This will output 15
 ```
+
+_Output:_
 
 ```python
 10
