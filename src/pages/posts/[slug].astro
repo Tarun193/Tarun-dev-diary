@@ -30,8 +30,17 @@ const { Content } = await render();
       <span>{data.publishDate}</span>
       <span>{data.author}</span>
     </div>
-    <div class="space-x-2 text-teal-200">
-      {data.tags.map((tag: string) => <span>#{tag}</span>)}
+    <div class="space-x-2">
+      {
+        data.tags.map((tag: string) => (
+          <a
+            href={`/tags/${createSlug(tag)}`}
+            class="hover:underline no-underline underline-offset-4 decoration-teal-200 decoration-dashed hover:cursor-pointer text-teal-200"
+          >
+            #{tag}
+          </a>
+        ))
+      }
     </div>
     <p>{data.description}</p>
   </section>

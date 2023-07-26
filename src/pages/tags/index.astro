@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../Layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import createSlug from "../../lib/createSlug";
 
 // Getting all the unique tags;
 const posts = await getCollection("blog", (blog) => !blog.data.draft);
@@ -21,7 +22,7 @@ const tags = Array.from(new Set(posts.map((post) => post.data.tags).flat()));
         <section class="my-4 space-x-4 text-xl">
           {tags.map((tag) => (
             <a
-              href={`/tags/${tag}/`}
+              href={`/tags/${createSlug(tag)}/`}
               class="hover:cursor-pointer hover:text-teal-200 underline underline-offset-8 decoration-dashed decoration-teal-200"
             >
               #{tag}
