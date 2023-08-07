@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import Post from "./postExcerpt.astro";
+const { pageNum } = Astro.props;
+
+const postsPerPage = 3;
+
+const totalPosts = await getCollection("blog", (blog) => !blog.data.draft);
+
+const lastPost = postsPerPage * pageNum;
+const startPost = lastPost - postsPerPage;
+const posts = totalPosts.slice(startPost, lastPost);
+console.log(Number(pageNum) === 1);
+---
+
+<section class="flex-1">
+  {
+    !posts.length ? (
+      <p class="text-lg text-center font-semibold mt-6">
+        Sorry for Now there are no Post
+      </p>
+    ) : (
+      <section class="my-4 space-y-6">
+        {posts.map((post) => (
+          <Post post={post} />
+        ))}
+      </section>
+    )
+  }
+</section>
+{
+  totalPosts.length >= 3 ? (
+    <section class="grid place-content-center">
+      <div class="space-x-4">
+        <button
+          disabled={Number(pageNum) === 1}
+          class={`${pageNum === 1 ? "opacity-50" : null}`}
+        >
+          <a
+            class="text-white no-underline"
+            href={
+              Number(pageNum) - 1 === 1
+                ? "/posts"
+                : `/posts/${Number(pageNum) - 1}`
+            }
+            onclick={
+              ((e) => {
+                if (Number(pageNum) === 1) {
+                  e.preventDefault();
+                }
+              }) as any
+            }
+          >
+            <span class={`text-3xl relative top-1`}>&#x2190;</span> Prev
+          </a>
+        </button>
+        <button
+          class={`${
+            Number(pageNum) === Math.ceil(totalPosts.length / 3)
+              ? "opacity-50"
+              : null
+          }`}
+          disabled={Number(pageNum) === Math.ceil(totalPosts.length / 3)}
+        >
+          <a
+            class="text-white no-underline"
+            href={`/posts/${Number(pageNum) + 1}`}
+          >
+            Next <span class="text-3xl relative top-1">&#x2192;</span>
+          </a>
+        </button>
+      </div>
+    </section>
+  ) : null
+}

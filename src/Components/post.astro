@@ -1,28 +1,30 @@
 ---
-import { CollectionEntry } from "astro:content";
-import slugify from "../lib/createSlug.js";
-
-export interface Props {
-  post: CollectionEntry<"blog">;
-}
-
 const { post } = Astro.props;
+const { data, render } = post;
+
+const { Content } = await render();
+
+import createSlug from "../lib/createSlug";
 ---
 
-<article class="px-2">
-  <a href={`/posts/${slugify(post?.data?.title)}`} class="space-y-2">
-    <h3
-      class="text-xl font-bold text-teal-200 hover:underline underline-offset-8 decoration-dashed decoration-teal-200 max-w-fit"
-    >
-      {post?.data?.title}
-    </h3>
-    <div class="text-sm space-x-2 italic">
-      <span>{post?.data?.publishDate}</span>
-      <span>{post?.data?.author}</span>
-    </div>
-    <div class="space-x-2 text-teal-200">
-      {post?.data?.tags.map((tag: string) => <span>#{tag}</span>)}
-    </div>
-    <p class="sm:text-lg">{post?.data?.description}</p>
-  </a>
-</article>
+<section>
+  <h1 class="my-2 p-0">{data.title}</h1>
+  <div class="text-md space-x-2 italic">
+    <span>{data.publishDate}</span>
+    <span>{data.author}</span>
+  </div>
+  <div class="space-x-2">
+    {
+      data.tags.map((tag: string) => (
+        <a
+          href={`/tags/${createSlug(tag)}`}
+          class="hover:underline no-underline underline-offset-4 decoration-teal-200 decoration-dashed hover:cursor-pointer text-teal-200"
+        >
+          #{tag}
+        </a>
+      ))
+    }
+  </div>
+  <p>{data.description}</p>
+</section>
+<Content />

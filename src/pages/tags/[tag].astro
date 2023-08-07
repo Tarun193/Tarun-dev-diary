@@ -1,7 +1,7 @@
 ---
 import { getCollection, CollectionEntry } from "astro:content";
 import BaseLayout from "../../Layouts/BaseLayout.astro";
-import Post from "../../Components/post.astro";
+import Post from "../../Components/postExcerpt.astro";
 import createSlug from "../../lib/createSlug";
 
 export async function getStaticPaths() {
@@ -37,7 +37,7 @@ const { posts, tag } = Astro.props;
           Sorry for Now there are no Post with tag {tag};
         </p>
       ) : (
-        <section class="my-4">
+        <section class="my-4 space-y-6">
           {posts.map((post) => (
             <Post post={post} />
           ))}

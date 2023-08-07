@@ -2,47 +2,53 @@
 import { CollectionEntry, getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug";
 import ContentLayout from "../../Layouts/ContentLayout.astro";
+import Post from "../../Components/Post.astro";
+import PostPage from "../../Components/PostPage.astro";
+import BaseLayout from "../../Layouts/BaseLayout.astro";
+
+interface PostByPage {
+  params: {
+    slug: string;
+  };
+}
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", (blog) => !blog.data.draft);
 
-  return posts.map((post) => ({
+  const postPages = posts.map((post) => ({
     params: { slug: createSlug(post.data.title) },
     props: { post },
   }));
+
+  const totalPages = Math.ceil(posts.length / 3);
+  let postsByPage: PostByPage[] = [];
+  for (let i = 2; i <= totalPages; i++) {
+    const obj = {
+      params: { slug: String(i) },
+    };
+    postsByPage.push(obj);
+  }
+  return [...postPages, ...postsByPage];
 }
 
 export interface prop {
   post: CollectionEntry<"blog">;
 }
 
+const { slug } = Astro.params;
 const { post } = Astro.props;
-
-const { data, render } = post;
-
-const { Content } = await render();
 ---
 
-<ContentLayout>
-  <section>
-    <h1 class="my-2 p-0">{data.title}</h1>
-    <div class="text-md space-x-2 italic">
-      <span>{data.publishDate}</span>
-      <span>{data.author}</span>
-    </div>
-    <div class="space-x-2">
-      {
-        data.tags.map((tag: string) => (
-          <a
-            href={`/tags/${createSlug(tag)}`}
-            class="hover:underline no-underline underline-offset-4 decoration-teal-200 decoration-dashed hover:cursor-pointer text-teal-200"
-          >
-            #{tag}
-          </a>
-        ))
-      }
-    </div>
-    <p>{data.description}</p>
-  </section>
-  <Content />
-</ContentLayout>
+{
+  post ? (
+    <ContentLayout>
+      <Post post={post} />
+    </ContentLayout>
+  ) : (
+    <BaseLayout>
+      <h1 class="text-3xl font-bold h-full">Posts</h1>
+      <hr class="h-[2px] bg-black/60 m-auto my-4" />
+      <PostPage pageNum={slug} />
+    </BaseLayout>
+  )
+}
