@@ -14,7 +14,7 @@ description: "In this insightful article, we will demystify two powerful Python 
 
 ## What are First-Class Functions?
 
-**first-class functions:** A programming language is said to have first-class functions if it treats functions as first-class citizens. This means that functions are treated the same way as any other entity in the programming language. For example, functions can be passed to other functions, returned by other functions and assigned to a variable just like other objects(int, string etc.). This is an important concept that helps in understanding other concepts such as closures, higher order functions, decorators and many more. Many languages such as `Python`, `JavaScript`, `PHP`, `lua` support first-class functions.
+**first-class functions:** A programming language is said to have first-class functions if it treats functions as first-class citizens. This means that functions are treated the same way as any other entity in the programming language. For example, functions can be passed to other functions, returned by other functions and assigned to a variable just like other objects(int, string etc.). This is an important concept that helps in understanding other concepts such as closures, higher-order functions, decorators and many more. Many languages such as `Python`, `JavaScript`, `PHP`, and `Lua` support first-class functions.
 
 ### Assigning function to a variable
 
@@ -38,7 +38,7 @@ _Output:_
 <function square at 0x7fc12daafe20>
 ```
 
-Now, we can see that the variable `square_copy` has the same reference as the `square` function, which means `square_copy` is going to act the same way `square` function is working. As you can see:
+Now, we can see that the variable `square_copy` has the same reference as the `square` function, which means `square_copy` is going to act the same way as the `square` function is working. As you can see:
 
 _Code:_
 
@@ -54,11 +54,11 @@ _Output:_
 9
 ```
 
-**Note :** While assigning a function to a variable, do not use parentheses, this will execute that function instead of assigning its reference and store the return value in the variable instead of storing function reference. For example, `square_copy = square(2)` will execute the `square` function and return the square of argument.
+**Note:** While assigning a function to a variable, do not use parentheses, this will execute that function instead of assigning its reference and will store the returned value in the variable instead of storing the function reference. For example, `square_copy = square(2)` will execute the `square` function and return the square of the argument.
 
 ### Passing function as an argument
 
-Now, take an Example of Python's higher order `filter` function.
+Now, take an Example of Python's higher-order `filter` function.
 
 _Code:_
 
@@ -82,7 +82,7 @@ _Output:_
 [2, 4, 6, 8, 10]
 ```
 
-As we can see `filter` function takes `is_even` function as an argument. We can create our own `filter` function.
+As we can see `filter` function takes the `is_even` function as an argument. We can create a custom `filter` function.
 
 _Code:_
 
@@ -114,7 +114,7 @@ _Output:_
 [2, 4, 6, 8, 10]
 ```
 
-The `my_filter` function mimics the functionality of python's higher order `filter` function.
+The `my_filter` function mimics the functionality of Python's higher-order `filter` function.
 
 ### Returning a function from another function
 
@@ -141,9 +141,9 @@ _Output:_
 Hello, how are you?
 ```
 
-As you can see, the `create_greet` function returns the `greet` function that was defined within it. We then assign this returned function to the `new_func` variable. Hence, the `new_func` is now acting as `greet` function.
+As you can see, the `create_greet` function returns the `greet` function that was defined within it. We then assign this returned function to the `new_func` variable. Hence, the `new_func` is now acting as the `greet` function.
 
-**Note:** While returning function, do not use parentheses `()`, as it will call that function and will return what that function is returning. In this example `return greet()` will call `greet` function and will print `Hello, how are you?` , as `greet` function is returning nothing. So, `return greet()` will return `None`.
+**Note:** While returning a function, do not use parentheses `()`, as it will call that function and will return what that function is returning. In this example, `return greet()` will call the `greet` function and will print `Hello, how are you?` , as the `greet` function is returning nothing. So, `return greet()` will return `None`.
 
 _Code:_
 
@@ -174,7 +174,7 @@ TypeError: 'NoneType' object is not callable
 
 ## What is Closure?
 
-**Closure:** consider a closure as an imaginary container (enviornment) that stores the function along with the record of surrounding variables.This allows the function to "remember" the values of those variables, even if they no longer exist in memory.
+**Closure:** consider closures as an imaginary container (environment) that stores the function along with the record of surrounding variables. This allows the function to "remember" the values of those variables, even if they no longer exist in memory.
 
 _Code:_
 
@@ -203,12 +203,12 @@ _Output:_
 15
 ```
 
-**Function's Working:** Whenever we call a function, a memory block is created in call stack for that function which stores all the variable associated with that function. Once the function is executed all the memory occupied by the function and it's variable is cleared.
+**Function's Working:** Whenever we call a function, a memory block is created in the call stack for that function which stores all the variables associated with that function. Once the function is executed all the memory occupied by the function and its variable is cleared.
 
-From the _function's working_, we can say that when we called `create_multiplier(2)` a memory block got created in call stack for `create_multiplier` function to store it variables and when the function returned `multiplier` the memory occupied by the function got cleared. This means that the variable `num` would also be removed from memory. However, when we call `doubler`, the function still knows the value of `num`. This is because the closure stores the value of `num` alongside the multiplier function.
+From the _function's working_, we can say that when we called `create_multiplier(2)` a memory block got created in the call stack for the `create_multiplier` function to store its variables and when the function returned `multiplier` the memory occupied by the function got cleared. This means that the variable `num` would also be removed from memory. However, when we call `doubler`, the function still knows the value of `num`. This is because the closure stores the value of `num` alongside the multiplier function.
 
 ## Some Of The Applications
 
-- Can be used to create custom higher order functions.
+- Can be used to create custom higher-order functions.
 - fundamentals for understanding the concept of `decorators`.
-- Can be used for data encasulation.
+- Can be used for data encapsulation.

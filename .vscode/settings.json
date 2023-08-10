@@ -1,3 +1,9 @@
 {
-    "editor.acceptSuggestionOnEnter": "on"
+  "editor.acceptSuggestionOnEnter": "on",
+  "grammarly.selectors": [
+    {
+      "language": "markdown",
+      "scheme": "file"
+    }
+  ]
 }
