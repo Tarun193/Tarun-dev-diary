@@ -3,6 +3,7 @@
 import Header from "../Components/Header.astro";
 import programmer from "../assests/images/programmer.svg";
 import Footer from "../Components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 export interface Props {
   className?: string;
@@ -33,6 +34,7 @@ const { className } = Astro.props;
     />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <ViewTransitions />
   </head>
 
   <body
@@ -42,6 +44,6 @@ const { className } = Astro.props;
     <main class={`flex-1 my-2 px-4 ${className}`}>
       <slot />
     </main>
+    <Footer />
   </body>
-  <Footer />
 </html>

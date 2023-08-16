@@ -16,16 +16,19 @@ const { post } = Astro.props;
   >
     <h3
       class="text-xl font-bold text-teal-200 hover:underline underline-offset-8 decoration-dashed decoration-teal-200 max-w-fit"
+      transition:name="heading"
     >
       {post?.data?.title}
     </h3>
     <div class="text-sm space-x-2 italic">
-      <span>{post?.data?.publishDate}</span>
-      <span>{post?.data?.author}</span>
+      <span transition:name="date">{post?.data?.publishDate}</span>
+      <span transition:name="author">{post?.data?.author}</span>
     </div>
-    <div class="space-x-2 text-teal-200">
+    <div class="space-x-2 text-teal-200" transition:name="tags">
       {post?.data?.tags.map((tag: string) => <span>#{tag}</span>)}
     </div>
-    <p class="sm:text-lg">{post?.data?.description}</p>
+    <p class="sm:text-lg" transition:name="description">
+      {post?.data?.description}
+    </p>
   </a>
 </article>

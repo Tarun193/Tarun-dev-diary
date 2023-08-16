@@ -8,12 +8,12 @@ import createSlug from "../lib/createSlug";
 ---
 
 <section>
-  <h1 class="my-2 p-0">{data.title}</h1>
+  <h1 class="my-2 p-0" transition:name="heading">{data.title}</h1>
   <div class="text-md space-x-2 italic">
-    <span>{data.publishDate}</span>
-    <span>{data.author}</span>
+    <span transition:name="date">{data.publishDate}</span>
+    <span transition:name="author">{data.author}</span>
   </div>
-  <div class="space-x-2">
+  <div class="space-x-2" transition:name="tags">
     {
       data.tags.map((tag: string) => (
         <a
@@ -25,6 +25,6 @@ import createSlug from "../lib/createSlug";
       ))
     }
   </div>
-  <p>{data.description}</p>
+  <p transition:name="description">{data.description}</p>
 </section>
 <Content />
