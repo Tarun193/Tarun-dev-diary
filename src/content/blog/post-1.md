@@ -154,7 +154,7 @@ def create_greet():
   return greet() # going to call greet()
 
 
-# this function will return reference to the inner_function.
+# This function will return nothing as in the return statement we are calling greet not returning it's reference.
 new_func = create_greet() # as greet return None, new_func = None
 
 print(new_func)
